@@ -1,0 +1,21 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Replace 'YOUR_GIT_REPO_URL' with the URL of your Git repository
+                // Replace 'YOUR_SPECIFIC_LOCATION' with the specific location you want to checkout
+                script {
+                    def gitRepoUrl = 'https://github.com/faseeh-22/Git-Checkout-P-S-Location.git'
+                    def specificLocation = 'Jenkins-folder'
+                    // Checkout the specific location from the Git repository
+                    dir(specificLocation) {
+                    git branch: 'master', url: 'https://github.com/faseeh-22/Git-Checkout-P-S-Location.git', changelog: false, credentialsId: 'git-checkout-pipeline-on-specific-location'
+                    }
+                }
+            }
+        }
+    }
+}
