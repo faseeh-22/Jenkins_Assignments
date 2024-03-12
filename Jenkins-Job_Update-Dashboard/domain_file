@@ -1,0 +1,17 @@
+
+api.tap.company
+ae-api.tap.company.aws
+sa1-api.tap.company.ksa
+api3.payments.tap.company
+dev-api.tap.company
+prod-api.tap.company
+sandbox-api.tap.company
+eu-api.tap.company
+asia-api.tap.company
+us-api.tap.company
+test-api.tap.company
+staging-api.tap.company
+qa-api.tap.company
+beta-api.tap.company
+internal-api.tap.company
+
