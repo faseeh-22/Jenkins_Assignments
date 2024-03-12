@@ -1,0 +1,46 @@
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                // Perform build steps here
+                echo 'Building...'
+                // Add build commands or scripts as needed
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                // Perform test steps here
+                echo 'Testing...'
+                // Add test commands or scripts as needed
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                // Perform deployment steps here
+                echo 'Deploying...'
+                // Add deployment commands or scripts as needed
+            }
+        }
+    }
+    
+    post {
+        success {
+            emailext subject: 'Pipeline Success',
+                body: 'The pipeline has succeeded. All stages completed successfully.',
+                to: 'moonstar322023@gmail.com'
+        }
+        
+        failure {
+            emailext subject: 'Pipeline Failure',
+                body: 'The pipeline has failed. Please investigate and take necessary actions.',
+                to: 'moonstar322023@gmail.com'
+        }
+    }
+}
+
+
