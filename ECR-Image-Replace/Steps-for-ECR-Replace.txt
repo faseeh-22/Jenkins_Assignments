@@ -1,0 +1,77 @@
+
+
+
+First export and set the environment variables to terminal.
+
+export ECR=980136594430.dkr.ecr.eu-west-1.amazonaws.com
+export ECR_Name=myapp
+export docker_tag=1.4 
+
+
+
+Then use "sed" command that will read those environment variables and automatically replace those variables in your "deployment.yml" file for "ECR image".
+
+sed -i'' "s|image:.*|image: ${ECR}/${ECR_Name}:${docker_tag}|" /home/faseeh/Devops-Practice/ArgoCD/Practice/deployment.yml
+
+
+
+Then Create a private repository and push the "deployment.yml" file in it.
+
+Then Create Jenkins pipeline, add environment variables in it, add sed command in it, clone repo through it and push changes through it.
+
+
+
+Below is the jenkins pipeline:
+"
+
+pipeline {
+    agent any
+    environment {
+        ECR = '980136594430.dkr.ecr.eu-west-1.amazonaws.com'
+        ECR_Name = 'myapp333'
+        docker_tag = '2.0'
+    }
+    stages {
+        stage("Git Clone") {
+            steps {
+                deleteDir()
+                git credentialsId: 'Github-ID', url: 'https://github.com/faseeh-22/Argocd-Private.git', branch: 'main'
+            }
+        }
+        stage("Replace Image Tag") {
+            steps {
+                script {
+                    sh """
+                    sed -i'' "s|image:.*|image: ${ECR}/${ECR_Name}:${docker_tag}|" deployment.yml
+                    """
+                }
+            }
+        }
+        stage('Commit changes') {
+            steps {
+                sh 'git add deployment.yml'
+                sh 'git commit -m "Add deployment.yml"'
+            }
+        }
+        stage('Push changes') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'Github-ID', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                    sh "git push https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/faseeh-22/Argocd-Private.git main"
+                }
+            }
+        }
+    }
+}
+
+This is the Right One.
+NOTE: You just have to provide "Github-ID" in the Jenkin's "Credentials" in the settings.
+
+"
+
+
+
+NOTE: Don't forget to provide your Credentials of github in Jenkins settings and also mention them in your jenkins pipeline.
+
+
+
+
