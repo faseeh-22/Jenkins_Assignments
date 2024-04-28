@@ -1,0 +1,43 @@
+
+
+pipeline {
+    agent any
+    environment {
+        ECR = '980136594430.dkr.ecr.eu-west-1.amazonaws.com'
+        ECR_Name = 'myapp333'
+        docker_tag = '2.0'
+    }
+    stages {
+        stage("Git Clone") {
+            steps {
+                deleteDir()
+                git credentialsId: 'Github-ID', url: 'https://github.com/faseeh-22/Argocd-Private.git', branch: 'main'
+            }
+        }
+        stage("Replace Image Tag") {
+            steps {
+                script {
+                    sh """
+                    sed -i'' "s|image:.*|image: ${ECR}/${ECR_Name}:${docker_tag}|" deployment.yml
+                    """
+                }
+            }
+        }
+        stage('Commit changes') {
+            steps {
+                sh 'git add deployment.yml'
+                sh 'git commit -m "Add deployment.yml"'
+            }
+        }
+        stage('Push changes') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'Github-ID', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+                    sh "git push https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/faseeh-22/Argocd-Private.git main"
+                }
+            }
+        }
+    }
+}
+
+This is the Right One.
+NOTE: You just have to provide "Github-ID" in the Jenkin's "Credentials" in the settings.
