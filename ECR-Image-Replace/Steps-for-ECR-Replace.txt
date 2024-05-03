@@ -17,7 +17,8 @@ sed -i'' "s|image:.*|image: ${ECR}/${ECR_Name}:${docker_tag}|" /home/faseeh/Devo
 
 Then Create a private repository and push the "deployment.yml" file in it.
 
-Then Create Jenkins pipeline, add environment variables in it (or Add environment variables on terminal using jenkins user OR set your git global credentials on terminal using jenkins user as: git config --global user.name "Your Name", git config --global user.email "your_email@example.com") , 
+Then Create Jenkins pipeline, add environment variables in it (or Add environment variables on terminal using jenkins user OR set your git global credentials on terminal using jenkins user 
+as: git config --global user.name "Your Name", git config --global user.email "your_email@example.com") , 
 add sed command in it, clone repo through it and push changes through it.
 
 
