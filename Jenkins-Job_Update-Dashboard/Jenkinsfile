@@ -17,7 +17,7 @@ pipeline {
                     // Checkout code from your Git repository
                     checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                               doGenerateSubmoduleConfigurations: false,
-                              extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/aqsa286/Json_automation_script.git']]])
+                              extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/faseeh22/Json_automation_script.git']]])
                 }
             }
         }
@@ -34,8 +34,8 @@ pipeline {
         stage('Copy File to Local Repository') {
     steps {
         // Copy the updated file to a specific location in your local repository
-        sh "sudo cp /var/lib/jenkins/workspace/Push_on_github-pipeline/${params.FILENAME} /home/aqsa286/Downloads/test"
-        sh "sudo mv /home/aqsa286/Downloads/test/${params.FILENAME} /home/aqsa286/Downloads/test/${params.RENAME}"
+        sh "sudo cp /var/lib/jenkins/workspace/Push_on_github-pipeline/${params.FILENAME} /home/faseeh/Downloads/test"
+        sh "sudo mv /home/faseeh/Downloads/test/${params.FILENAME} /home/faseeh/Downloads/test/${params.RENAME}"
     }
 }
     }
