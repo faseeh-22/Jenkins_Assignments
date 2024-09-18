@@ -17,7 +17,7 @@ pipeline {
                     // Checkout code from your Git repository
                     checkout([$class: 'GitSCM', branches: [[name: '*/main']],
                               doGenerateSubmoduleConfigurations: false,
-                              extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/faseeh22/Jenkins_Assignments.git']]])
+                              extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/faseeh-22/Jenkins_Assignments.git']]])
                 }
             }
         }
