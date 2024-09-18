@@ -3,7 +3,7 @@
 pipeline {
     agent any
     parameters {
-        string(defaultValue: 'template-dashboard.ndjson', description: 'Enter the filename:', name: 'FILENAME')
+        string(defaultValue: 'dashboard.ndjson', description: 'Enter the filename:', name: 'FILENAME')
         string(defaultValue: 'Product', description: 'Enter the replacement word for Product_name:', name: 'PRODUCT')
         string(defaultValue: 'Endpoint', description: 'Enter the replacement word for Endpoint_name:', name: 'ENDPOINT')
         string(defaultValue: 'Request_uri', description: 'Enter the replacement word for Request_uri:', name: 'REQ_URI')
