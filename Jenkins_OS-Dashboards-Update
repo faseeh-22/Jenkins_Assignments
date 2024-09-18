@@ -135,4 +135,7 @@ PRODUCT, ENDPOINT, REQ_URI, INDEX ) as follows:
 
 **7)** Save the pipeline and run it. You will see that a new file with changes is created and moved to your desired directory.
 
+NOTE: Also open the terminal and login as jenkins user as: " sudo su - jenkins "
+then cd into workspace: " cd workspace " and then see your new directory in the jenkins workspace.
+
 NOTE: These all 4 files should be on github (must) and these files are not needed on Laptop or local machine.
