@@ -24,10 +24,10 @@ pipeline {
         stage('Execute Script') {
             steps {
                 // Set execute permission on the script file (if needed)
-                 sh 'chmod +rwx final1.sh'
+                sh 'chmod +rwx Jenkins-Job_Update-Dashboard/final1.sh'
                 // Execute your Bash script with parameters
                 script {
-                    sh "./final1.sh ${params.FILENAME} ${params.PRODUCT} ${params.ENDPOINT} ${params.REQ_URI} ${params.INDEX} ${params.RENAME}"
+                    sh "./Jenkins-Job_Update-Dashboard/final1.sh ${params.FILENAME} ${params.PRODUCT} ${params.ENDPOINT} ${params.REQ_URI} ${params.INDEX} ${params.RENAME}"
                 }
             }
         }
