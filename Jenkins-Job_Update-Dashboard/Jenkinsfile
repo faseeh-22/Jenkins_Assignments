@@ -34,7 +34,7 @@ pipeline {
         stage('Copy File to Local Repository') {
     steps {
         // Copy the updated file to a specific location in your local repository
-        sh "sudo cp /var/lib/jenkins/workspace/OP/${params.FILENAME} /home/faseeh/Downloads"
+        sh "sudo cp /var/lib/jenkins/workspace/OP1/${params.FILENAME} /home/faseeh/Downloads"
         sh "sudo mv /home/faseeh/Downloads/${params.FILENAME} /home/faseeh/Downloads/${params.RENAME}"
     }
 }
